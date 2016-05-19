@@ -1,0 +1,8 @@
+setuptools
+pip
+wheel
+requests
+spyquery
+docopt
+pyyaml
+
