@@ -18,8 +18,6 @@ while nodesfound:
     r = requests.get('https://github.com/%s?tab=repositories&page=%s' % (config['github_username'], page))
     c = r.content
 
-    # print('Content-type: text/plain')
-    # print('')
     d = PyQuery(c)
     # d = d('.repo-list-item')
     d = d('.source')
@@ -41,6 +39,8 @@ while nodesfound:
             countByName[repo_name] = count
     page += 1
 
+print('Content-type: text/plain')
+print('')
 sortedKeys = list(countByName.keys())
 sortedKeys.sort()
 for name in sortedKeys:
