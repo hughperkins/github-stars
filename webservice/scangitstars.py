@@ -21,6 +21,7 @@ while nodesfound:
     d = PyQuery(c)
     # d = d('.repo-list-item')
     d = d('.source')
+    # print('d', d)
     for thing in d:
         nodesfound = True
         # print('thing', thing)
@@ -29,6 +30,9 @@ while nodesfound:
         count = 0
         countanode = PyQuery(thing)('.d-table')('.col-1')('a')
         # print('countanode', countanode)
+        # print('countanode.text()', countanode.text() == '')
+        if countanode.text() == '':
+            continue
         count = int(countanode.text())
         # si = PyQuery(statItem)
         # href = si.attr('href')
