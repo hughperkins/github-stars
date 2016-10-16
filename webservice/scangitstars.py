@@ -13,32 +13,20 @@ page = 1
 nodesfound = True
 countByName = {}
 while nodesfound:
-    # print('page', page)
     nodesfound = False
     r = requests.get('https://github.com/%s?tab=repositories&page=%s' % (config['github_username'], page))
-    c = r.content
+    c = r.content.decode('utf-8').replace('\u00ae', '(R)').replace('\u2122', '(TM)')
 
     d = PyQuery(c)
-    # d = d('.repo-list-item')
     d = d('.source')
-    # print('d', d)
     for thing in d:
         nodesfound = True
-        # print('thing', thing)
-        repo_name = PyQuery(thing)('.d-table')('.d-table-cell')('.f4')('a').text().lower()
-        # print('repo_name', repo_name)
+        repo_name = PyQuery(thing)('.f4')('a').text().lower()
         count = 0
-        countanode = PyQuery(thing)('.d-table')('.col-1')('a')
-        # print('countanode', countanode)
-        # print('countanode.text()', countanode.text() == '')
+        countanode = PyQuery(thing)('.col-1')('a')
         if countanode.text() == '':
             continue
         count = int(countanode.text())
-        # si = PyQuery(statItem)
-        # href = si.attr('href')
-        # if href.endswith('/stargazers'):
-        #   count = int(si.text())
-        # print('count', count)
         if count > 0:
             countByName[repo_name] = count
     page += 1
