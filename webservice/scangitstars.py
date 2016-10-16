@@ -36,4 +36,4 @@ print('')
 sortedKeys = list(countByName.keys())
 sortedKeys.sort()
 for name in sortedKeys:
-    print(name, countByName[name])
+    print('%s %s' % (name, countByName[name]))
