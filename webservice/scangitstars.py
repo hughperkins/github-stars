@@ -7,7 +7,7 @@ from pyquery import PyQuery
 
 script_dir = path.dirname(path.realpath(__file__))
 with open(join(script_dir, 'config.yaml'), 'r') as f:
-               config = yaml.load(f)
+    config = yaml.load(f)
 
 page = 1
 nodesfound = True
@@ -18,18 +18,22 @@ while nodesfound:
     c = r.content.decode('utf-8').replace('\u00ae', '(R)').replace('\u2122', '(TM)')
 
     d = PyQuery(c)
-    d = d('.source')
-    for thing in d:
-        nodesfound = True
-        repo_name = PyQuery(thing)('.f4')('a').text().lower()
-        count = 0
-        countanode = PyQuery(thing)('.col-1')('a')
-        if countanode.text() == '':
+    for a_node in d('a'):
+        if 'aria-label' not in a_node.keys():
             continue
-        count = int(countanode.text())
-        if count > 0:
-            countByName[repo_name] = count
+        ariaLabel = a_node.get('aria-label')
+        if ariaLabel != 'Stargazers':
+            continue
+        nodesfound = True
+        href = a_node.get('href')
+        repo_name = href.split('/')[2]
+        stars = int(a_node.text_content().strip())
+        if stars > 0:
+            countByName[repo_name] = stars
     page += 1
+    if page > 20:
+        print('pages went off end...')
+        break
 
 print('Content-type: text/plain')
 print('')
