@@ -1,4 +1,4 @@
-#!/home/ubuntu/env/bin/python
+#!/usr/bin/env python
 import requests
 import yaml
 from os import path
@@ -38,6 +38,6 @@ while nodesfound:
 print('Content-type: text/plain')
 print('')
 sortedKeys = list(countByName.keys())
-sortedKeys.sort()
+sortedKeys.sort(key=lambda x: x.lower())
 for name in sortedKeys:
     print('%s %s' % (name, countByName[name]))

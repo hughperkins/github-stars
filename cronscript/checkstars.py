@@ -1,4 +1,4 @@
-#!env python
+#!/usr/bin/env python
 
 from __future__ import print_function
 import requests
@@ -43,6 +43,6 @@ if newList != oldList:
         if count != oldCount:
             print('%s %s => %s' % (repo, oldCount, count))
 
-if newList != oldList and newList != '':
+if newList != oldList and newList.strip() != '':
         with open('oldstars.txt', 'w') as f:
                 f.write(newList)
