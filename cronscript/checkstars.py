@@ -41,7 +41,8 @@ if newList != oldList:
     for repo, count in new.items():
         oldCount = old.get(repo, 0)
         if count != oldCount:
-            print('%s %s => %s' % (repo, oldCount, count))
+            if config['show_removals'] or (oldCount is None or oldCount == 0 or count > oldCount):
+                print('%s %s => %s' % (repo, oldCount, count))
 
 if newList != oldList and newList.strip() != '':
         with open('oldstars.txt', 'w') as f:
