@@ -48,11 +48,16 @@ for each repo changed from 0 to whatever-it-is-now
 ## FAQ
 
 * why not just have one script?
-  * I wrote the webservice first, and just checked it manually
-  * then added the cron script later
-  * so just by chance really :-)  No reason why they can't be merged...
+  * the cron script runs on dreamhost, which handles emailing for me (I mean, anything that goes to stdout in something called from cron, gets emailed automatically. Easy :-) )
+    * dreamhost doesnt allow much cpu however, so ...
+  * the cpu-intensive bit, which polls github etc, runs on an aws box
+    * its probably possible to set up email on an aws box, but seems like a llloootttt of effort
 * do you really need to check your github stars so compulsively? :-P
   * apparently I do :-D
+* it only shows stars added, not removed
+  * yeah, nothing worse than getting woken up in the morning by an email to tell you someone unstarred your repository. I'd rather not know I think. It's not like someone sends you a message saying "I unstarred it because X,Y,Z, ..."
+* can I see who unstarred me?
+  * why? so can email them etc?  I think I'd rather not know.  Technically doable though, but I dont intend to do that myself.
 * why not make a website for this, and make money off it?
   * cos if hardly any users, wont make much money
   * if lots of users, github will probably either block me, or simply implement it themselves
@@ -64,3 +69,6 @@ for each repo changed from 0 to whatever-it-is-now
 
 * [BSDv2](LICENSE)
 
+## News
+
+* Updated on 5 April 2017 to handle new github format, and add some unit-tests
