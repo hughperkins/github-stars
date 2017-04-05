@@ -64,6 +64,8 @@ for each repo changed from 0 to whatever-it-is-now
   * I'm 'lazy :-D
 * can I make a website that uses this?
   * Sure :-)
+* this repo has no stars!
+  * Yeah. Ironic isnt it :-)
 
 ## License
 
