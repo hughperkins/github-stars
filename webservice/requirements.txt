@@ -1,8 +1,7 @@
 setuptools
 pip
 wheel
-requests
-spyquery
+requests==2.9.1
+pyquery==1.2.17
 docopt
 pyyaml
-
